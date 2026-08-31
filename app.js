@@ -1,22 +1,5 @@
-class Personagem{
-  constructor(nome,vida,ataque){
-    this.nome = nome,
-    this.vida = vida,
-    this.ataque = ataque
-  } }
- causaDano(personagem){
-  personagem.recebeDano(this.ataque)
- }
- recebeDano(quantidade){
-  this.vida = this.vida - quantidade
-  if(this.vida <=0)
-    this.vida ="morreu"
- }
-class name {
-    constructor(parameters) {
-        
-    }
-}class Personagem {
+
+class Personagem {
     constructor(nome, vida, ataque) {
         this.nome = nome,
             this.vida = vida,
