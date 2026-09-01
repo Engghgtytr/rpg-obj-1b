@@ -1,46 +1,55 @@
-
 class Personagem {
-    constructor(nome, vida, ataque) {
-        this.nome = nome,
-            this.vida = vida,
-            this.ataque = ataque
-    }
-    causaDano(personagem) {
-        personagem.recebeDano(this.ataque)
-    }
-    recebeDano(quantidade) {
-       
-        
-        no = quantidade - this.ataque - dano
-        this.vida = this.vida - quantidade
-        if (this.vida <= 0)
-            this.vida = "morreu"
-    }
-    estaVivo() {
-        return this.vida > 0
-    }
-    mostraStatus() {
-        console.log(this.nome + "| vida" + this.vida)
-    }
+  constructor(nome, vida, ataque, defesa) {
+    this.nome = nome
+    this.vida = vida
+    this.vidaMaxima = vida
+    this.ataque = ataque
+    this.defesa = defesa
+  }
 
+  curar(quantidade) {
+    this.vida = this.vida + quantidade
+    
+    if (this.vida > this.vidaMaxima) {
+      this.vida = this.vidaMaxima
+    }
+  }
+
+  recebeDano(quantidade) {
+    let dano = quantidade - this.defesa
+    if (dano < 0) {
+      dano = 0
+    }
+    this.vida = this.vida - dano
+    if (this.vida < 0) {
+      this.vida = 0
+    }
+  }
+
+  estaVivo() {
+    return this.vida > 0
+  }
+
+  mostrarStatus() {
+    console.log(this.nome + " | Vida: " + this.vida)
+  }
+
+  causaDano(personagem) {
+    personagem.recebeDano(this.ataque)
+  }
 }
 
-const druida = new Personagem("obin", 150 ,15)
-const guerreiro = new Personagem("thorfin",60,20)
-const arqueiro = new Personagem("legolas",50,40)
-const mago = new Personagem("Gandalf",40,70)
-const assasino = new Personagem("mortis",30.60)
-const clerigo = new Personagem("Ezra", 40,20)
-const monge =  new Personagem("tatsu",60,30)
-const druida = new Personagem("obin", 150, 15)
-const guerreiro = new Personagem("thorfin", 60, 20)
-const arqueiro = new Personagem("legolas", 50, 40)
-const mago = new Personagem("Gandalf", 40, 35)
-const assasino = new Personagem("mortis", 30, 50)
-const clerigo = new Personagem("Ezra", 40, 20)
-const monge = new Personagem("tatsu", 60, 30)
+const guerreiro = new Personagem("Thorin", 60, 20)
+const mago = new Personagem("Gandalfe", 60, 35)
+const arqueiro = new Personagem("Legolas", 80, 25)
+const druida = new Personagem("marcus", 70, 10)
+const bardo = new Personagem("divaldo", 35, 55)
+const ocultista = new Personagem("carcos", 90, 35)
 
-console.log(monge)
-mago.causaDano(assasino)
-assasino.mostraStatus()
-console.log(assasino.estaVivo())
+guerreiro.causaDano(arqueiro)
+mago.causaDano(arqueiro)
+druida.causaDano(arqueiro)
+ocultista.causaDano(arqueiro)
+bardo.causaDano(arqueiro)
+arqueiro.mostrarStatus()
+console.log(arqueiro.estaVivo())
