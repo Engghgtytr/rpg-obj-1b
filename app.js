@@ -1,55 +1,47 @@
 class Personagem {
-  constructor(nome, vida, ataque, defesa) {
-    this.nome = nome
-    this.vida = vida
-    this.vidaMaxima = vida
-    this.ataque = ataque
-    this.defesa = defesa
-  }
-
-  curar(quantidade) {
-    this.vida = this.vida + quantidade
-    
-    if (this.vida > this.vidaMaxima) {
-      this.vida = this.vidaMaxima
+    constructor(nome, vida, ataque) {
+        this.nome = nome;
+        this.vida = vida;
+        this.ataque = ataque;
     }
-  }
 
-  recebeDano(quantidade) {
-    let dano = quantidade - this.defesa
-    if (dano < 0) {
-      dano = 0
+    causaDano(personagem) {
+        personagem.recebeDano(this.ataque);
     }
-    this.vida = this.vida - dano
-    if (this.vida < 0) {
-      this.vida = 0
+
+    recebeDano(quantidade) {
+        this.vida = this.vida - quantidade;
+
+        if (this.vida <= 0) {
+            this.vida = "morreu";
+        }
     }
-  }
-
-  estaVivo() {
-    return this.vida > 0
-  }
-
-  mostrarStatus() {
-    console.log(this.nome + " | Vida: " + this.vida)
-  }
-
-  causaDano(personagem) {
-    personagem.recebeDano(this.ataque)
-  }
 }
 
-const guerreiro = new Personagem("Thorin", 60, 20)
-const mago = new Personagem("Gandalfe", 60, 35)
-const arqueiro = new Personagem("Legolas", 80, 25)
-const druida = new Personagem("marcus", 70, 10)
-const bardo = new Personagem("divaldo", 35, 55)
-const ocultista = new Personagem("carcos", 90, 35)
+const druida = new Personagem("Orbin", 150, 15);
+const guerreiro = new Personagem("Thorin", 60, 20);
+const mago = new Personagem("Gandalfe", 60, 35);
+const arqueiro = new Personagem("Legolas", 80, 25);
+const dragao = new Personagem("Shenlong", 200, 40);
+const ninja = new Personagem("Minato", 70, 70);
+const ciclope = new Personagem("X", 180, 25);
 
-guerreiro.causaDano(arqueiro)
-mago.causaDano(arqueiro)
-druida.causaDano(arqueiro)
-ocultista.causaDano(arqueiro)
-bardo.causaDano(arqueiro)
-arqueiro.mostrarStatus()
-console.log(arqueiro.estaVivo())
+const personagens = {
+    druida,
+    guerreiro,
+    mago,
+    arqueiro
+}
+
+personagens.forEach(funtion(personagens)){
+    personagens.mostrarStatus()
+}
+
+function proximoTurno(){
+  turno = turno + 1
+  jogadorAtual = jogadorAtual === 0 ? 1 : 0
+}
+
+proximoTurno()
+console.log(turno)
+console.log(jogadorAtual)
